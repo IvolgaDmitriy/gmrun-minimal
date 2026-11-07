@@ -1,0 +1,78 @@
+gtk-font-name = "Ubuntu Sans 14"
+
+style "gmrun-base" {
+    font_name = "Ubuntu Sans 14"
+    xthickness = 0
+    ythickness = 0
+    bg[NORMAL] = "#282a36"
+    bg[ACTIVE] = "#343746"
+    bg[PRELIGHT] = "#44475a"
+    bg[INSENSITIVE] = "#282a36"
+    fg[NORMAL] = "#f8f8f2"
+    fg[ACTIVE] = "#f8f8f2"
+    fg[PRELIGHT] = "#f8f8f2"
+    fg[INSENSITIVE] = "#6272a4"
+    base[NORMAL] = "#343746"
+    text[NORMAL] = "#f8f8f2"
+    base[SELECTED] = "#6e5991"
+    text[SELECTED] = "#f8f8f2"
+    bg[SELECTED] = "#6e5991"
+    fg[SELECTED] = "#f8f8f2"
+    GtkRange::slider-width = 6
+    GtkRange::stepper-size = 0
+    GtkScrollbar::has-backward-stepper = 0
+    GtkScrollbar::has-forward-stepper = 0
+    GtkScrolledWindow::scrollbars-within-bevel = 1
+    engine "murrine" {
+        roundness = 0
+        contrast = 0.8
+        reliefstyle = 0
+        glazestyle = 0
+        gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
+    }
+}
+class "GtkWidget" style : highest "gmrun-base"
+
+style "gmrun-entry" {
+    base[NORMAL] = "#343746"
+    base[ACTIVE] = "#343746"
+    base[PRELIGHT] = "#343746"
+    base[SELECTED] = "#bd93f9"
+    text[NORMAL] = "#f8f8f2"
+    text[ACTIVE] = "#f8f8f2"
+    text[SELECTED] = "#282a36"
+    xthickness = 0
+    ythickness = 0
+    GtkEntry::inner-border = { 14, 14, 18, 18 }
+    GtkWidget::focus-line-width = 0
+    engine "murrine" {
+        roundness = 0
+        contrast = 0.8
+        reliefstyle = 0
+        glazestyle = 0
+        focus_color = "#bd93f9"
+        gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
+    }
+}
+class "GtkEntry" style : highest "gmrun-entry"
+class "GtkCompletionLine" style : highest "gmrun-entry"
+
+style "gmrun-completions" {
+    base[NORMAL] = "#282a36"
+    base[ACTIVE] = "#6e5991"
+    text[ACTIVE] = "#f8f8f2"
+    GtkTreeView::vertical-separator = 12
+    GtkTreeView::horizontal-separator = 16
+    GtkTreeView::allow-rules = 0
+    GtkTreeView::odd-row-color = "#282a36"
+    GtkTreeView::even-row-color = "#282a36"
+    GtkWidget::focus-line-width = 0
+}
+class "GtkTreeView" style : highest "gmrun-completions"
+class "GtkCList" style : highest "gmrun-completions"
+
+style "gmrun-list-frame" {
+    xthickness = 0
+    ythickness = 0
+}
+class "GtkScrolledWindow" style : highest "gmrun-list-frame"
