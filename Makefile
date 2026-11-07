@@ -13,13 +13,13 @@ build/appearance.so: src/appearance.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -Wall -Wextra -Wno-deprecated-declarations -fPIC $(GTK_CFLAGS) -shared -o $@ $< $(LDFLAGS) $(GTK_LIBS)
 
 install: all
-	python3 install.py install
+	bash scripts/install.sh install
 
 uninstall:
-	python3 install.py uninstall
+	bash scripts/install.sh uninstall
 
 check: all
-	python3 -m unittest discover -s tests
+	bash tests/install.sh
 
 clean:
 	rm -rf build

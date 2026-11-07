@@ -10,7 +10,7 @@ Tested with gmrun 0.9.2 on Ubuntu 24.04, GNOME/X11.
 ## Install
 
 ```sh
-sudo apt install gmrun gnome-terminal gtk2-engines-murrine build-essential pkg-config libgtk2.0-dev python3
+sudo apt install gmrun gnome-terminal gtk2-engines-murrine build-essential pkg-config libgtk2.0-dev
 make install
 ~/.local/bin/gmrun-minimal
 ```

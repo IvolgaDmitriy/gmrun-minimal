@@ -12,17 +12,18 @@ This module uses GTK2 widgets, including the older completion list.
 On Ubuntu:
 
 ```sh
-sudo apt install gmrun gnome-terminal gtk2-engines-murrine build-essential pkg-config libgtk2.0-dev python3
-make
+sudo apt install gmrun gnome-terminal gtk2-engines-murrine build-essential pkg-config libgtk2.0-dev
+
 make install
 ```
 
 GTK2 development headers and pkg-config are needed to build `appearance.so`.
+The installer uses Bash and GNU coreutils.
 The Murrine engine draws the input field. GNOME Terminal runs commands that need
 a terminal. The [Dracula palette](https://draculatheme.com/contribute#color-palette)
 is included; installing the Dracula theme is optional.
 
-`make install` calls `install.py` to copy files and save backups. `make uninstall`
+`make install` calls `scripts/install.sh` (Bash) to copy files and save backups. `make uninstall`
 uses the same script to restore them. Run these commands as your regular user.
 
 Installation writes:
