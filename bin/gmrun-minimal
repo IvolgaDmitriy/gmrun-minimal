@@ -1,0 +1,5 @@
+#!/bin/sh
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+cd "$HOME" || exit 1
+# A command-line GTK module stays local to this process.
+exec gmrun --gtk-module="$HOME/.local/lib/gmrun-minimal/appearance.so" "$@"

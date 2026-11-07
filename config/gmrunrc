@@ -1,0 +1,9 @@
+Terminal = gnome-terminal
+TermExec = ${Terminal} -- /bin/sh -c
+AlwaysInTerm = codex ssh telnet ftp lynx mc vi vim pine centericq perldoc man
+Width = 1185
+History = 1000
+ShowLast = 0
+Selected = 0
+ShowDotFiles = 1
+TabTimeout = 0
