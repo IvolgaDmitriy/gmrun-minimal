@@ -102,14 +102,22 @@ unavailable.
 
 The module centers the bar on the monitor containing the pointer when it opens.
 An empty input shows `Type request...`. This hint disappears while typing and is
-never part of the command or history.
+never part of the command or history. The `>` prompt occupies its own column and
+stays visible when a long command scrolls.
 It hides the status label along with the header, so completion status and errors
 normally shown there are also hidden. The entry's context menu remains available.
 The module is passed on gmrun's command line; launched applications do not inherit it.
 
 Completion menu height and row height are `COMPLETION_HEIGHT` and `ROW_HEIGHT` in
-`src/appearance.c`. After editing those constants, run `make install` to rebuild.
+`src/appearance.c`. `SURFACE_RADIUS`, `SURFACE_PADDING` and `SURFACE_OPACITY` control
+the rounded surface. Opacity ranges from 0 to 1; the default is 0.94. After editing
+those constants, run `make install` to rebuild.
 Config edits take effect the next time you open the launcher.
+
+Rounded corners use an RGBA window and Cairo antialiasing. Translucency needs an
+X11 compositor, such as GNOME's. Without compositing, the surface is opaque and
+rectangular. The glass effect uses a gradient and transparency; it does not blur
+the wallpaper behind the window.
 
 ## Remove
 
