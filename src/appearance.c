@@ -9,6 +9,30 @@ static GdkScreen *opening_screen = NULL;
 static int opening_monitor = 0;
 static int completion_marker;
 
+static gboolean draw_placeholder(GtkWidget *widget, GdkEventExpose *event, gpointer data)
+{
+    (void)data;
+    GtkEntry *entry = GTK_ENTRY(widget);
+    if (gdk_window_get_parent(event->window) != gtk_widget_get_window(widget) ||
+        *gtk_entry_get_text(entry) ||
+        *pango_layout_get_text(gtk_entry_get_layout(entry)))
+        return FALSE;
+
+    gint x, y, area_x, area_y;
+    gtk_entry_get_layout_offsets(entry, &x, &y);
+    gdk_window_get_position(event->window, &area_x, &area_y);
+    PangoLayout *placeholder = gtk_widget_create_pango_layout(widget, "Type request...");
+    GdkColor color = gtk_widget_get_style(widget)->text[GTK_STATE_NORMAL];
+    cairo_t *cr = gdk_cairo_create(event->window);
+    cairo_set_source_rgba(cr, color.red / 65535.0, color.green / 65535.0,
+        color.blue / 65535.0, 0.55);
+    cairo_move_to(cr, x - area_x, y - area_y);
+    pango_cairo_show_layout(cr, placeholder);
+    cairo_destroy(cr);
+    g_object_unref(placeholder);
+    return FALSE;
+}
+
 static void restore_theme(GtkWidget *widget, GtkStyle *previous_style, gpointer data)
 {
     (void)previous_style;
@@ -93,6 +117,8 @@ static gboolean realized(GSignalInvocationHint *hint, guint count, const GValue 
         gtk_entry_set_has_frame(GTK_ENTRY(widget), 0);
         restore_theme(widget, NULL, NULL);
         g_signal_connect(widget, "style-set", G_CALLBACK(restore_theme), NULL);
+        g_signal_connect_after(widget, "expose-event", G_CALLBACK(draw_placeholder), NULL);
+        g_signal_connect_swapped(widget, "changed", G_CALLBACK(gtk_widget_queue_draw), widget);
     }
     if (GTK_IS_CLIST(widget)) {
         gtk_clist_set_row_height(GTK_CLIST(widget), ROW_HEIGHT);

@@ -101,6 +101,8 @@ the input background. Fonts fall back to an installed family if Ubuntu Sans is
 unavailable.
 
 The module centers the bar on the monitor containing the pointer when it opens.
+An empty input shows `Type request...`. This hint disappears while typing and is
+never part of the command or history.
 It hides the status label along with the header, so completion status and errors
 normally shown there are also hidden. The entry's context menu remains available.
 The module is passed on gmrun's command line; launched applications do not inherit it.
