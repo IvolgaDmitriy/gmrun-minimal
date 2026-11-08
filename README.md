@@ -1,5 +1,7 @@
 # gmrun-minimal
 
+![Command and path completion, then history recall in gmrun-minimal](docs/teaser.gif)
+
 A centered command bar for [gmrun](https://github.com/wdlkmpx/gmrun), with
 [Dracula colors](https://draculatheme.com/contribute#color-palette), larger text
 and a borderless layout. Tab completion and command history
